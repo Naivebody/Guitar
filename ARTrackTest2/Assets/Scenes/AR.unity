@@ -289,7 +289,7 @@ MonoBehaviour:
   m_LightEstimationMode: -1
   m_AutoFocus: 1
   m_LightEstimation: 0
-  m_FacingDirection: 1
+  m_FacingDirection: 2
   m_RenderMode: 0
 --- !u!81 &428823190
 AudioListener:
@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 711167303}
   - component: {fileID: 711167302}
   - component: {fileID: 711167301}
+  - component: {fileID: 711167304}
   m_Layer: 0
   m_Name: XR Origin
   m_TagString: Untagged
@@ -448,6 +449,21 @@ Transform:
   - {fileID: 499527613}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &711167304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 711167300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be9be518063a13449f4f31e746e96d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToSpawn: {fileID: 0}
+  fretOffset: {x: 0, y: 0, z: 0.1}
+  targetImageName: FretboardImage
 --- !u!1 &1400532205
 GameObject:
   m_ObjectHideFlags: 0
