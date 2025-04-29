@@ -1219,6 +1219,42 @@ MonoBehaviour:
   - chordName: C Minor
     prefab: {fileID: 8551654434671302955, guid: 1e0583484cbcd03428e948db13de0cc1, type: 3}
     offset: {x: 0, y: 0, z: 0}
+  - chordName: D Major
+    prefab: {fileID: 339331138064020579, guid: a847cb9587cf6c94bb6505376ea5ee49, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: D Minor
+    prefab: {fileID: 339331138064020579, guid: d490b09648b83114e8d04a7024200f9f, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: E Major
+    prefab: {fileID: 4385685205239256417, guid: 94dc6cc0b10cf2845a288a60edbc3906, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: E Minor
+    prefab: {fileID: 4385685205239256417, guid: 19b3c3b6f222a364a8856b18e169d94b, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: F Major
+    prefab: {fileID: 4385685205239256417, guid: 17fedd4488390074d8c27b973ea566a6, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: F Minor
+    prefab: {fileID: 4385685205239256417, guid: 17edbe6ea8db77442b63cc04b5056d91, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: G Major
+    prefab: {fileID: 713493282789495914, guid: 98f1bfb73ddc61b4b9cde15fb44dfc15, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: G Minor
+    prefab: {fileID: 4385685205239256417, guid: 88c1e22cdd227284baf65b4bcd8c2526, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: A Major
+    prefab: {fileID: 713493282789495914, guid: 51e838fad3d216443bbd82eda5fae5cb, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: A Minor
+    prefab: {fileID: 713493282789495914, guid: fab947daa7dc8af479d1b0f6a961d14d, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: B Major
+    prefab: {fileID: 713493282789495914, guid: 514d5eda2533554488282dfc29c8ec46, type: 3}
+    offset: {x: 0, y: 0, z: 0}
+  - chordName: B Minor
+    prefab: {fileID: 713493282789495914, guid: b831170c5a8db4c41a0744a678931dc5, type: 3}
+    offset: {x: 0, y: 0, z: 0}
   defaultOffset: {x: 0, y: 0, z: 0}
   chordDropdown: {fileID: 273650543}
 --- !u!1 &911890969
