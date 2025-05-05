@@ -10,7 +10,9 @@ public class ARChordPractice : MonoBehaviour
     [SerializeField] private List<ChordConfig> chordConfigs = new List<ChordConfig>(); // 和弦配置列表
     [SerializeField] private Vector3 defaultOffset = new Vector3(0, 0.1f, 0); // 默认偏移量
     [SerializeField] private TMP_Dropdown chordDropdown; // 用户选择和弦的 UI 下拉菜单（可选）
+    [SerializeField] private TMP_Text promptText; // UI 文本，用于显示提示
 
+    private bool isImageDetected = false;
     private ARTrackedImageManager trackedImageManager;
     private readonly Dictionary<string, GameObject> instantiatedPrefabs = new Dictionary<string, GameObject>();
     private string currentChord; // 当前选中的和弦名称
@@ -25,6 +27,16 @@ public class ARChordPractice : MonoBehaviour
         public Vector3 offset; // 和弦特定的偏移量
     }
 
+
+    
+
+    void UpdatePromptText()
+    {
+        if (!isImageDetected)
+        {
+            promptText.text = "请将吉他放入画面，确保前五品和标记图像可见。";
+        }
+    }
     void Awake()
     {
         trackedImageManager = GetComponent<ARTrackedImageManager>();
@@ -32,6 +44,8 @@ public class ARChordPractice : MonoBehaviour
 
     void Start()
     {
+        // 初始化时显示初始提示
+        UpdatePromptText();
         // 初始化 UI 下拉菜单（如果使用）
         if (chordDropdown != null)
         {
@@ -85,6 +99,7 @@ public class ARChordPractice : MonoBehaviour
         // 处理新检测到的图像
         foreach (var trackedImage in eventArgs.added)
         {
+            UpdateTrackingState(trackedImage);
             trackedImageName = trackedImage.referenceImage.name;
             UpdatePrefabForImage(trackedImage);
         }
@@ -92,6 +107,7 @@ public class ARChordPractice : MonoBehaviour
         // 更新现有图像的跟踪状态
         foreach (var trackedImage in eventArgs.updated)
         {
+            UpdateTrackingState(trackedImage);
             trackedImageName = trackedImage.referenceImage.name;
             UpdatePrefabForImage(trackedImage);
         }
@@ -101,8 +117,10 @@ public class ARChordPractice : MonoBehaviour
         {
             if (instantiatedPrefabs.TryGetValue(trackedImage.referenceImage.name, out var prefab))
             {
+                isImageDetected = false;
                 Destroy(prefab);
                 instantiatedPrefabs.Remove(trackedImage.referenceImage.name);
+                UpdatePromptText();
             }
         }
     }
@@ -185,6 +203,21 @@ public class ARChordPractice : MonoBehaviour
                 UpdatePrefabForImage(trackedImage);
                 break;
             }
+        }
+    }
+
+
+    void UpdateTrackingState(ARTrackedImage trackedImage)
+    {
+        isImageDetected = true;
+        // 检查追踪状态
+        if (trackedImage.trackingState == TrackingState.Tracking)
+        {
+            promptText.text = ""; // 追踪稳定，隐藏提示
+        }
+        else if (trackedImage.trackingState == TrackingState.Limited || trackedImage.trackingState == TrackingState.None)
+        {
+            promptText.text = "请调整摄像头，确保标记图像清晰可见。";
         }
     }
 
