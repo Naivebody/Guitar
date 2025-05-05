@@ -34,7 +34,7 @@ public class ARChordPractice : MonoBehaviour
     {
         if (!isImageDetected)
         {
-            promptText.text = "请将吉他放入画面，确保前五品和标记图像可见。";
+            promptText.text = "Makesure your guitar and featured Image are in your screen.";
         }
     }
     void Awake()
@@ -217,7 +217,7 @@ public class ARChordPractice : MonoBehaviour
         }
         else if (trackedImage.trackingState == TrackingState.Limited || trackedImage.trackingState == TrackingState.None)
         {
-            promptText.text = "请调整摄像头，确保标记图像清晰可见。";
+            promptText.text = "Move your camera and make sure the featured image is clear to see.";
         }
     }
 
