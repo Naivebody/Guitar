@@ -20,6 +20,9 @@ public class ARChordPractice : MonoBehaviour
     private string currentChord; // 当前选中的和弦名称
     private string trackedImageName; // 当前跟踪的图像名称
     private GameObject activePrefab; // 当前激活的 prefab
+    private List<string> chordNames; // 存储和弦名称列表
+    private int currentChordIndex = 0; // 当前和弦索引
+
 
     // 和弦配置数据结构
     [System.Serializable]
@@ -33,7 +36,6 @@ public class ARChordPractice : MonoBehaviour
     void Awake()
     {
         trackedImageManager = GetComponent<ARTrackedImageManager>();
-        trackedImageManager.maxNumberOfMovingImages = 1; // 限制为单张图像跟踪
 
         // 初始化对象池和和弦配置字典
         foreach (var config in chordConfigs)
@@ -43,6 +45,7 @@ public class ARChordPractice : MonoBehaviour
             prefab.SetActive(false);
             prefabPool[config.chordName] = prefab;
         }
+        chordNames = new List<string>(chordConfigDict.Keys);
     }
 
     void Start()
@@ -53,6 +56,13 @@ public class ARChordPractice : MonoBehaviour
         if (chordDropdown != null)
         {
             InitializeChordDropdown();
+        }
+
+        if (chordNames.Count > 0)
+        {
+            currentChord = chordNames[0];
+            currentChordIndex = 0;
+            SelectChord(currentChord);
         }
     }
 
@@ -212,5 +222,29 @@ public class ARChordPractice : MonoBehaviour
         {
             Debug.LogWarning($"Chord {chordName} not found in chord configs.");
         }
+    }
+
+    //接收android插件的音量键消息
+    public void OnVolumeUp()
+    {
+        SwitchChord(1); // 切换到下一个和弦
+        Debug.Log("Volume Up pressed");
+    }
+
+    public void OnVolumeDown()
+    {
+        SwitchChord(-1); // 切换到上一个和弦
+        Debug.Log("Volume Down pressed");
+    }
+
+    void SwitchChord(int direction)
+    {
+        if (chordNames.Count == 0) return;
+
+        currentChordIndex = (currentChordIndex + direction + chordNames.Count) % chordNames.Count;
+        currentChord = chordNames[currentChordIndex];
+        SelectChord(currentChord);
+
+        Debug.Log($"Switched to chord: {currentChord}");
     }
 }
